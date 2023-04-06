@@ -18,7 +18,7 @@ public class UserUpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
-        String name=req.getParameter("name");
+        String name=req.getParameter("fullName");
         String email=req.getParameter("email");
         String password=req.getParameter("password");
         int id= Integer.parseInt(req.getParameter("id"));

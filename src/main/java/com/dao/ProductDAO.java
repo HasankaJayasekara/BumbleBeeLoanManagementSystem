@@ -53,7 +53,7 @@ public class ProductDAO {
     
 	
 	public List<Product> getAllProducts() {
-        List<Product> book = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
         try {
 
             String sql = "select * from products";
@@ -68,14 +68,14 @@ public class ProductDAO {
                 row.setPrice(rs.getDouble("price"));
                 row.setImage(rs.getString("image"));
 
-                book.add(row);
+                products.add(row);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        return book;
+        return products;
     }
 	
 	

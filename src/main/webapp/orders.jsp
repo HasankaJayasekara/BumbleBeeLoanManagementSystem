@@ -9,7 +9,7 @@
 	<%
 	DecimalFormat dcf = new DecimalFormat("#.##");
 	request.setAttribute("dcf", dcf);
-	Customer auth = (Customer) request.getSession().getAttribute("auth");
+	User auth = (User) request.getSession().getAttribute("auth");
 	List<Order> orders = null;
 	if (auth != null) {
 	    request.setAttribute("person", auth);

@@ -9,7 +9,7 @@
 <%
 DecimalFormat dcf = new DecimalFormat("#.##");
 request.setAttribute("dcf", dcf);
-Customer auth = (Customer) request.getSession().getAttribute("auth");
+User auth = (User) request.getSession().getAttribute("auth");
 if (auth != null) {
     request.setAttribute("person", auth);
 }
@@ -44,7 +44,7 @@ if (cart_list != null) {
     </head>
     <body class="bg-light">
         
-        <%@include file="navbar.jsp" %>
+        <%@include file="cnavbar.jsp" %>
 
 	<div class="container my-3">
 		<div class="d-flex py-3"><h3>Total Price: $ ${(total>0)?dcf.format(total):0} </h3> <a class="mx-3 btn btn-primary" href="cart-check-out">Check Out</a></div>

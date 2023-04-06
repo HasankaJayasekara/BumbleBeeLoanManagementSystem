@@ -1,27 +1,24 @@
-<%@page import="com.entity.Cart"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.entity.*"%>
+<%@page import="java.util.*"%>
 <%@page import="com.dao.ProductDAO"%>
-<%@page import="com.entity.Product"%>
-<%@page import="java.util.List"%>
-<%@page import="com.entity.Customer"%>
-<%@page import="com.dao.CustomerDAO"%>
 <%@page import="com.conn.DBConnect"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page isELIgnored="false" %>
-<%
-Customer auth = (Customer) request.getSession().getAttribute("auth");
-if (auth != null) {
-    request.setAttribute("person", auth);
-}
-ProductDAO pd = new ProductDAO(DBConnect.getConn());
-List<Product> products = pd.getAllProducts();
-ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
-if (cart_list != null) {
-	request.setAttribute("cart_list", cart_list);
-}
-%>
+
+	<%
+	User auth = (User) request.getSession().getAttribute("auth");
+	if (auth != null) {
+		response.sendRedirect("CustomerIndex.jsp");
+	}
+        ProductDAO pd = new ProductDAO(DBConnect.getConn());
+        List<Product> products = pd.getAllProducts();
+	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+	if (cart_list != null) {
+		request.setAttribute("cart_list", cart_list);
+	}
+	%>
 
 <!DOCTYPE html>
 <html>
@@ -60,7 +57,7 @@ if (cart_list != null) {
 			<%
 			}
 			} else {
-			out.println("There is no proucts");
+			out.println("There is no products");
 			}
 			%>
 

@@ -151,9 +151,30 @@ public class UserDAO {
        }
     return f;
     }
-}
-         
-         
+        
+      public User userLogin(String email, String password) {
+		User user = null;
+        try {
+            String sql = "select * from users where email=? and password=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+            	user = new User();
+            	user.setId(rs.getInt("id"));
+            	user.setFullName(rs.getString("fullName"));
+            	user.setEmail(rs.getString("email"));
+            }
+        }catch(Exception e){
+           e.printStackTrace();
+       }
+        return user;
+    }
+}      
+  
+
+       
        
     
 

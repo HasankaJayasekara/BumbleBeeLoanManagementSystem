@@ -1,10 +1,13 @@
 package com.servlet;
+
 import com.conn.DBConnect;
-import com.dao.LoginDAO;
-import com.entity.Login;
+import com.dao.UserDAO;
+import com.entity.User;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,36 +15,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/login")
+
+@WebServlet("/user-login")
 public class LoginServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		try (PrintWriter out = response.getWriter()) {
+			String email = request.getParameter("login-email");
+			String password = request.getParameter("login-password");
 
-        LoginDAO dao = new LoginDAO(DBConnect.getConn());
-        boolean isAdmin = "admin@gmail.com".equals(email) && "admin".equals(password);
+			UserDAO udao = new UserDAO(DBConnect.getConn());
+			User user = udao.userLogin(email, password);
+			if (user != null) {
+				request.getSession().setAttribute("auth", user);
+//				System.out.print("user logged in");
+				response.sendRedirect("index.jsp");
+			} else {
+				out.println("there is no user");
+			}
 
-        if (isAdmin) {
-            // If the user is an admin, redirect to customer.jsp
-            response.sendRedirect(request.getContextPath() + "/customer.jsp");
-        } else {
-            try {
-                // If the user is not an admin, check their credentials and redirect to buy.jsp if they're valid
-                Login login = new Login(email, password);
-                boolean isValid = dao.validate(email, password);
-                
-                if (isValid) {
-                    response.sendRedirect(request.getContextPath() + "/add_customer.jsp");
-                } else {
-                    // If the user's credentials are invalid, redirect back to the login page with an error message
-                    request.setAttribute("error", "Invalid email or password");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
+		} catch(Exception e){
+           e.printStackTrace();
+       } 
+
+	}
 }

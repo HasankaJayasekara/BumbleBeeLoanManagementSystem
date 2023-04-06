@@ -1,7 +1,17 @@
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page isELIgnored="false" %>
+<%@page import="com.entity.*"%>
+<%@page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	<%
+	User auth = (User) request.getSession().getAttribute("auth");
+	if (auth != null) {
+		response.sendRedirect("index.jsp");
+	}
+	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+	if (cart_list != null) {
+		request.setAttribute("cart_list", cart_list);
+	}
+	%>
 <!DOCTYPE html>
 <html>
     <head>

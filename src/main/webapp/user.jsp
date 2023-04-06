@@ -22,7 +22,6 @@
     <div class ="container p-3">
      <div class="card">
      <div class="card-body">
-         <a href="UserRegistation.jsp" class="btn btn-primary">Add User</a>
         <p class="text-center fs-1">All User Details</p>
          <c:if test="${not empty succMsg}">
          <p class="text-center text-success">${succMsg}</p>
