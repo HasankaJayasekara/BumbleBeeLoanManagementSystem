@@ -27,7 +27,7 @@ public class OrderNowServlet extends HttpServlet {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
 
-            Customer auth = (Customer) request.getSession().getAttribute("auth");
+            User auth = (User) request.getSession().getAttribute("auth");
 
             if (auth != null) {
                 String productId = request.getParameter("id");

@@ -162,7 +162,7 @@ public class UserDAO {
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
             	user = new User();
-            	user.setId(rs.getInt("id"));
+            	user.setId(rs.getInt("uid"));
             	user.setFullName(rs.getString("fullName"));
             	user.setEmail(rs.getString("email"));
             }

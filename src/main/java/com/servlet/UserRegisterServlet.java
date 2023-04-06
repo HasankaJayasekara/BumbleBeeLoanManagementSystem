@@ -35,12 +35,12 @@ public class UserRegisterServlet extends HttpServlet {
         if(f)
         {
             session.setAttribute("succMsg","User Details submitted successfully.");
-            resp.sendRedirect("user.jsp");
+            resp.sendRedirect("login.jsp");
         } 
         else 
         {
             session.setAttribute("errorMsg","Something went wrong on the server.");
-            resp.sendRedirect("user.jsp");
+            resp.sendRedirect("UserRegistation.jsp");
         }
     }
 }

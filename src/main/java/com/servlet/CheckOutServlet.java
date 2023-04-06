@@ -29,7 +29,7 @@ public class CheckOutServlet extends HttpServlet {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
-			Customer auth = (Customer) request.getSession().getAttribute("auth");
+			User auth = (User) request.getSession().getAttribute("auth");
 			if(cart_list != null && auth!=null) {
 				for(Cart c:cart_list) {
 					Order order = new Order();

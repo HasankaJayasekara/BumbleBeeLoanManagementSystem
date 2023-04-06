@@ -5,7 +5,7 @@
 	<%
 	User auth = (User) request.getSession().getAttribute("auth");
 	if (auth != null) {
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("CustomerIndex.jsp");
 	}
 	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 	if (cart_list != null) {
