@@ -32,7 +32,7 @@
           <a class="nav-link active" aria-current="page" href="category.jsp">Category</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/logout">Logout</a>
+            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/adminlogout">Logout</a>
         </li>
       </ul>
     </div>
