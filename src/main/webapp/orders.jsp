@@ -34,7 +34,7 @@
     </head>
     <body class="bg-light">
         
-        <%@include file="navbar.jsp" %>
+        <%@include file="cnavbar.jsp" %>
 	<div class="container">
 		<div class="card-header my-3">All Orders</div>
 		<table class="table table-light">

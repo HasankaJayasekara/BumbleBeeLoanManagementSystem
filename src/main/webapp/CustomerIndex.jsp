@@ -7,10 +7,6 @@
 <%@page isELIgnored="false" %>
 
 	<%
-	User auth = (User) request.getSession().getAttribute("auth");
-	if (auth == null) {
-		response.sendRedirect("CustomerIndex.jsp");
-	}
         ProductDAO pd = new ProductDAO(DBConnect.getConn());
         List<Product> products = pd.getAllProducts();
 	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
