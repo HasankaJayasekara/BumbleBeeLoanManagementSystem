@@ -4,7 +4,7 @@
  */
 package com.entity;
 
-public class Customer{    
+public class Loan{    
     private int id;
     private String fullName;
     private String dob;
@@ -12,12 +12,15 @@ public class Customer{
     private String phonenumber;
     private String email;
     private String password;
+    private double loanAmount;
+    private int repaymentPeriod;
+    
 
-    public Customer() {
+    public Loan() {
         super();
     }
 
-    public Customer(String fullName, String dob, String address, String phonenumber, String email,String password) {
+    public Loan(String fullName, String dob, String address, String phonenumber, String email,String password,double loanAmount, int repaymentPeriod) {
         super();
         this.fullName = fullName;
         this.dob = dob;
@@ -25,9 +28,11 @@ public class Customer{
         this.phonenumber= phonenumber;
         this.email = email;
         this.password= password;
+        this.loanAmount = loanAmount;
+        this.repaymentPeriod = repaymentPeriod;
     }
 
-    public Customer(int id, String fullName, String dob, String address, String phonenumber, String email,String password) {
+    public Loan(int id, String fullName, String dob, String address, String phonenumber, String email,String password,double loanAmount, int repaymentPeriod) {
         super();
         this.id = id;
         this.fullName = fullName;
@@ -93,10 +98,26 @@ public class Customer{
     public void setPassword(String password) {
         this.password = password;
     }
+    public double getLoanAmount() {
+    return loanAmount;
+}
+
+    public void setLoanAmount(double loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
+    public int getRepaymentPeriod() {
+        return repaymentPeriod;
+    }
+
+    public void setRepaymentPeriod(int repaymentPeriod) {
+        this.repaymentPeriod = repaymentPeriod;
+    }
+
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", fullName=" + fullName + ", dob=" + dob + ", address=" + address + ", phonenumber=" + phonenumber +", email=" + email+ ", password=" + password + '}';
+        return "Loan{" + "id=" + id + ", fullName=" + fullName + ", dob=" + dob + ", address=" + address + ", phonenumber=" + phonenumber +", email=" + email+ ", password=" + password  + ", loanAmount=" + loanAmount + ", repaymentPeriod=" + repaymentPeriod + '}';
     }
     
     

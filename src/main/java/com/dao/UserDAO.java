@@ -1,16 +1,14 @@
-
 package com.dao;
+
 import com.entity.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author hasan
- */
 public class UserDAO {
     
     private Connection conn;
@@ -20,137 +18,125 @@ public class UserDAO {
         this.conn = conn;
     }
     
-    public boolean addUser(User user)
-    
-    {
-       boolean f =false;
+    public boolean addUser(User user) {
+        boolean f = false;
        
-       try {
+        try {
            
-          String sql="insert into users (name,email,password) values(?,?,?)" ;
+            String sql = "INSERT INTO users (name, dob, email, password) VALUES (?, ?, ?, ?)";
           
-          PreparedStatement ps = conn.prepareStatement(sql);
-          ps.setString(1, user.getFullName());
-          ps.setString(2, user.getEmail());
-          ps.setString(3, user.getPassword() );
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getFullName());
+            ps.setString(2,user.getDateOfBirth());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPassword() );
           
-          int i=ps.executeUpdate();
+            int i = ps.executeUpdate();
           
-          if(i==1)
-          {
-             f=true;
-          
+            if (i == 1) {
+                f = true;
+            }
+       
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return f;
     }
     
-       }catch(Exception e){
-           e.printStackTrace();
-}
-    return f;
-    }
-    
-    public List<User> getAllUser()
-    {
-        List<User> list =new ArrayList<User>();
-        User u =null;
-        try{
-            String sql ="select * from users";
+    public List<User> getAllUser() {
+        List<User> list = new ArrayList<User>();
+        User u = null;
+        try {
+            String sql ="SELECT * FROM users";
             PreparedStatement ps = conn.prepareStatement(sql);
             
-            ResultSet rs=ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
             
-            while(rs.next())
-            {
-              u=new User();
-              u.setId(rs.getInt(1));
-              u.setFullName(rs.getString(2));
-              u.setEmail(rs.getString(3));
-              u.setPassword(rs.getString(4));
-              list.add(u);
+            while (rs.next()) {
+                u = new User();
+                u.setId(rs.getInt(1));
+                u.setFullName(rs.getString(2));
+                u.setDateOfBirth(rs.getString(3));
+                u.setEmail(rs.getString(4));
+                u.setPassword(rs.getString(5));
+                list.add(u);
               
             }
-        }catch(Exception e){
-            
+        } catch(Exception e) {
+            e.printStackTrace();
         }
         return list;
-        }
+    }
     
-        public User getUserById(int id){
-          User u=null;
-        try{
-            String sql ="select * from users where uid=?";
+    public User getUserById(int id) {
+        User u = null;
+        try {
+            String sql = "SELECT * FROM users WHERE uid=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             
-            ResultSet rs=ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
             
-            while(rs.next())
-            {
-              u=new User();
-              u.setId(rs.getInt(1));
-              u.setFullName(rs.getString(2));
-              u.setEmail(rs.getString(3));
-              u.setPassword(rs.getString(4));
-              
-    
-              
+            while (rs.next()) {
+                u = new User();
+                u.setId(rs.getInt(1));
+                u.setFullName(rs.getString(2));
+                u.setDateOfBirth(rs.getString(3));
+                u.setEmail(rs.getString(4));
+                u.setPassword(rs.getString(5));
             }
-        }catch(Exception e){
-            
+        } catch(Exception e) {
+            e.printStackTrace();
         }
           
-          return u;
-        
-        }
-    public boolean updateUser(User user)
+        return u;
+    }
     
-    {
-       boolean f =false;
-       
-       try {
-           
-          String sql="update users set name=?,email=?,password=? where uid=?" ;
-          
-          PreparedStatement ps = conn.prepareStatement(sql);
-          ps.setString(1, user.getFullName());
-          ps.setString(2, user.getEmail());
-          ps.setString(3, user.getPassword());
-          ps.setInt(4,user.getId());
-          
-          int i=ps.executeUpdate();
-          
-          if(i==1)
-          {
-             f=true;
-          
-          }
-       
-       }catch(Exception e){
-           e.printStackTrace();
-       }
-    return f;
-    }
-        public boolean deleteUser(int id)
-                
-        {
+    public boolean updateUser(User user) {
         boolean f = false;
-        try{
-         String sql ="delete from users where uid=?";
-         PreparedStatement ps=conn.prepareStatement(sql);
-         ps.setInt(1, id);
-         
-         int i=ps.executeUpdate();
-          
-          if(i==1)
-          {
-             f=true;
-          
-          }
        
-       }catch(Exception e){
-           e.printStackTrace();
-       }
-    return f;
+        try {
+           
+            String sql = "UPDATE users SET name=?, dob=?, email=?, password=? WHERE uid=?";
+          
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getFullName());
+            ps.setString(2,user.getDateOfBirth());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPassword());
+            ps.setInt(5,user.getId());
+          
+            int i = ps.executeUpdate();
+          
+            if (i == 1) {
+                f = true;
+            }
+       
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return f;
     }
+    
+    public boolean deleteUser(int id) {
+        boolean f = false;
+        try {
+            String sql = "DELETE FROM users WHERE uid=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+         
+            int i = ps.executeUpdate();
+          
+            if (i == 1) {
+                f = true;
+            }
+       
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+        
         
       public User userLogin(String email, String password) {
 		User user = null;
@@ -163,6 +149,7 @@ public class UserDAO {
             if(rs.next()){
             	user = new User();
             	user.setId(rs.getInt("uid"));
+                user.setDateOfBirth(rs.getString("dob"));
             	user.setFullName(rs.getString("fullName"));
             	user.setEmail(rs.getString("email"));
             }
@@ -171,6 +158,21 @@ public class UserDAO {
        }
         return user;
     }
+      public boolean isUserExist(String email) {
+    boolean userExists = false;
+    try {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            userExists = true;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return userExists;
+}
 }      
   
 

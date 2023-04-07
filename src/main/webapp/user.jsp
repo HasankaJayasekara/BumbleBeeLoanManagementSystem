@@ -35,6 +35,7 @@
           <thead>
             <tr>
               <th scope="col">Full Name</th>
+              <th scope="col">Date Of Birth</th>
               <th scope="col">Email</th>
               <th scope="col">Password</th>
               <th scope="col">Action</th>
@@ -48,6 +49,7 @@
                %>
                <tr>
               <th scope="row"><%=u.getFullName()%></th>
+              <td><%=u.getDateOfBirth() %></td>
               <td><%=u.getEmail() %></td>
               <td><%=u.getPassword() %></td>
               

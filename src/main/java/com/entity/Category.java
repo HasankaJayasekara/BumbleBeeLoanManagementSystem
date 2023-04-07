@@ -9,7 +9,7 @@ public class Category {
         super();
     }
 
-    public Category(String CategoryName, String description) {
+    public Category(String name, String description) {
         this.name = name;
         this.description = description;
     }

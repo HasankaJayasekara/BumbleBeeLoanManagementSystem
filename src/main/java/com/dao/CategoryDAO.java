@@ -110,6 +110,7 @@ public class CategoryDAO {
           PreparedStatement ps = conn.prepareStatement(sql);
           ps.setString(1, category.getCategoryName());
           ps.setString(2, category.getDescription() );
+          ps.setInt(3,category.getId());
           
           int i=ps.executeUpdate();
           

@@ -49,7 +49,7 @@
                    <tr>
                   <th scope="row"><%=s.getCategoryName()%></th>
                   <td><%=s.getDescription()%></td>
-                  <td><a href="cupdate?id=<%=s.getId()%>" class="btn btn-sm btn-primary">Edit</a>
+                  <td><a href="edit_category.jsp?id=<%=s.getId()%>" class="btn btn-sm btn-primary">Edit</a>
                       <a href="cdelete?id=<%=s.getId()%>" class="btn btn-sm btn-danger ms-1">Delete</a></td>
                 </tr>
                    <%

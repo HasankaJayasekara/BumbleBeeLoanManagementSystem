@@ -20,7 +20,7 @@
         <%@include file="all_css.jsp" %>
     </head>
     <body class="bg-light">
-        <%@include file="navbar.jsp" %>
+        <%@include file="cnavbar.jsp" %>
         
         <div class="container p-4">
             <div class="row">
@@ -34,13 +34,17 @@
                             <c:remove var="succMsg"/>
                         </c:if>
                          <c:if test="${not empty errorMsg}">
-                            <p class="text-center text-success">${errorMsg}</p>
-                            <c:remove var="succMsg"/>
+                            <p class="text-center text-danger error-message">${errorMsg}</p>
+                            <c:remove var="errorMsg"/>
                         </c:if>
                         <form action="uregister" method="post">
                             <div class="mb-3">
                             <label  class="form-label">Full Name</label>
                             <input type="text" name="fullName" class="form-control" >
+                            </div>
+                            <div class="mb-3">
+                            <label  class="form-label">Date Of Birth</label>
+                            <input type="date" name="dateOfBirth" class="form-control" >
                             </div>
                              <div class="mb-3">
                               <label  class="form-label">Email</label>

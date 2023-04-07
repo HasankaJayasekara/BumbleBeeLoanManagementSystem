@@ -1,6 +1,6 @@
 
-<%@page import="com.entity.Customer"%>
-<%@page import="com.dao.CustomerDAO"%>
+<%@page import="com.entity.Loan"%>
+<%@page import="com.dao.LoanDAO"%>
 <%@page import="com.conn.DBConnect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,12 +18,12 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                     <div class="card-body">
-                        <p class="fs-3 text-center">Edit Customer</p>
+                        <p class="fs-3 text-center">Edit Loan Details</p>
                         
                         <%
                         int id=Integer.parseInt(request.getParameter("id"));
-                        CustomerDAO dao = new CustomerDAO(DBConnect.getConn());
-                        Customer s=dao.getCustomerById(id);
+                        LoanDAO dao = new LoanDAO(DBConnect.getConn());
+                        Loan s=dao.getLoanById(id);
                         %>
                         <form action="update" method="post">
                             <div class="mb-3">
@@ -50,8 +50,20 @@
                               <label  class="form-label">Password</label>
                               <input type="password" value="<%=s.getPassword()%>" name="password" class="form-control" >
                             </div>
+                               <div class="mb-3">
+                                <label for="loanAmount">Loan Amount</label>
+                                <input type="number" id="loanAmount" name="loanAmount" value="<%=s.getLoanAmount()%>" required min="0">
+                            </div>
+                            <div class="mb-3">
+                                <label for="repaymentPeriod">Repayment Period</label>
+                                <select id="repaymentPeriod" name="repaymentPeriod" required>
+                                    <option value="3" <%= s.getRepaymentPeriod() == 3 ? "selected" : "" %>>3 months</option>
+                                    <option value="6" <%= s.getRepaymentPeriod() == 6 ? "selected" : "" %>>6 months</option>
+                                    <option value="9" <%= s.getRepaymentPeriod() == 9 ? "selected" : "" %>>9 months</option>
+                                </select>
+                            </div>
                            <input type="hidden" name="id" value="<%=s.getId()%>">
-                          <button type="submit" class="btn btn-primary col-md-12">Update</button>
+                          <button type="submit" class="btn btn-primary col-md-12">Edit</button>
                         </form>
                           
                     </div>

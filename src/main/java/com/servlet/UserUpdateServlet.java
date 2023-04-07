@@ -19,11 +19,12 @@ public class UserUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         String name=req.getParameter("fullName");
+        String dateOfBirth =req.getParameter("dob");
         String email=req.getParameter("email");
         String password=req.getParameter("password");
         int id= Integer.parseInt(req.getParameter("id"));
         
-        User user=new User(id,name,email,password);
+        User user=new User(id,name,dateOfBirth,email,password);
         
         UserDAO dao = new UserDAO(DBConnect.getConn());
         HttpSession session=req.getSession();

@@ -1,5 +1,4 @@
 package com.servlet;
-
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +19,7 @@ public class AdminLoginServlet extends HttpServlet {
         if(email.equals(ADMIN_EMAIL) && password.equals(ADMIN_PASSWORD)) {
             HttpSession session = request.getSession();
             session.setAttribute("adminEmail", email);
-            response.sendRedirect("customer.jsp");
+            response.sendRedirect("loan.jsp");
         } else {
             request.setAttribute("errorMessage", "Invalid email or password");
             request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);

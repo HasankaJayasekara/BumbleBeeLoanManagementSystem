@@ -1,42 +1,40 @@
 
 package com.dao;
 
-import com.entity.Customer;
+import com.entity.Loan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author hasan
- */
-public class CustomerDAO {
+
+public class LoanDAO {
     
     private Connection conn;
     
-    public CustomerDAO(Connection conn) {
+    public LoanDAO(Connection conn) {
         super();
         this.conn = conn;
     }
     
-    public boolean addCustomer(Customer customer)
+    public boolean addLoan(Loan loan)
     
     {
        boolean f =false;
        
        try {
            
-          String sql="insert into customer(name,dob,address,phonenumber,email,password) values(?,?,?,?,?,?)" ;
-          
-          PreparedStatement ps = conn.prepareStatement(sql);
-          ps.setString(1, customer.getFullName());
-          ps.setString(2, customer.getDob() );
-          ps.setString(3, customer.getAddress());
-          ps.setString(4, customer.getPhonenumber() );
-          ps.setString(5, customer.getEmail());
-          ps.setString(6, customer.getPassword() );
+            String sql="insert into loan (name,dob,address,phonenumber,email,password,loan_amount,repayment_period) values(?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, loan.getFullName());
+            ps.setString(2, loan.getDob() );
+            ps.setString(3, loan.getAddress());
+            ps.setString(4, loan.getPhonenumber() );
+            ps.setString(5, loan.getEmail());
+            ps.setString(6, loan.getPassword() );
+            ps.setDouble(7, loan.getLoanAmount());
+            ps.setInt(8, loan.getRepaymentPeriod());
           
           int i=ps.executeUpdate();
           
@@ -52,19 +50,19 @@ public class CustomerDAO {
     return f;
     }
     
-    public List<Customer> getAllCustomer()
+    public List<Loan> getAllLoan()
     {
-        List<Customer> list =new ArrayList<Customer>();
-        Customer s =null;
+        List<Loan> list =new ArrayList<Loan>();
+        Loan s =null;
         try{
-            String sql ="select * from customer";
+            String sql ="select * from loan";
             PreparedStatement ps = conn.prepareStatement(sql);
             
             ResultSet rs=ps.executeQuery();
             
             while(rs.next())
             {
-              s=new Customer();
+              s=new Loan();
               s.setId(rs.getInt(1));
               s.setFullName(rs.getString(2));
               s.setDob(rs.getString(3));
@@ -72,6 +70,10 @@ public class CustomerDAO {
               s.setPhonenumber(rs.getString(5));
               s.setEmail(rs.getString(6));
               s.setPassword(rs.getString(7));
+              s.setEmail(rs.getString(6));
+              s.setPassword(rs.getString(7));
+              s.setLoanAmount(rs.getDouble(8));
+              s.setRepaymentPeriod(rs.getInt(9));
               list.add(s);
               
             }
@@ -81,10 +83,10 @@ public class CustomerDAO {
         return list;
         }
     
-        public Customer getCustomerById(int id){
-          Customer s=null;
+        public Loan getLoanById(int id){
+          Loan s=null;
         try{
-            String sql ="select * from customer where cid=?";
+            String sql ="select * from loan where cid=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             
@@ -92,7 +94,7 @@ public class CustomerDAO {
             
             while(rs.next())
             {
-              s=new Customer();
+              s=new Loan();
               s.setId(rs.getInt(1));
               s.setFullName(rs.getString(2));
               s.setDob(rs.getString(3));
@@ -100,6 +102,10 @@ public class CustomerDAO {
               s.setPhonenumber(rs.getString(5));
               s.setEmail(rs.getString(6));
               s.setPassword(rs.getString(7));
+              s.setEmail(rs.getString(6));
+              s.setPassword(rs.getString(7));
+              s.setLoanAmount(rs.getDouble(8));
+              s.setRepaymentPeriod(rs.getInt(9));
               
     
               
@@ -111,23 +117,25 @@ public class CustomerDAO {
           return s;
         
         }
-    public boolean updateCustomer(Customer customer)
+    public boolean updateLoan(Loan loan)
     
     {
        boolean f =false;
        
        try {
            
-          String sql="update customer set name=?,dob=?,address=?,phonenumber=?,email=?,password=? where cid=?" ;
+          String sql="update loan set name=?,dob=?,address=?,phonenumber=?,email=?,password=?,loan_amount=?,repayment_period=? where cid=?" ;
           
           PreparedStatement ps = conn.prepareStatement(sql);
-          ps.setString(1, customer.getFullName());
-          ps.setString(2, customer.getDob() );
-          ps.setString(3, customer.getAddress());
-          ps.setString(4, customer.getPhonenumber() );
-          ps.setString(5, customer.getEmail());
-          ps.setString(6, customer.getPassword());
-          ps.setInt(7,customer.getId());
+          ps.setString(1, loan.getFullName());
+          ps.setString(2, loan.getDob() );
+          ps.setString(3, loan.getAddress());
+          ps.setString(4, loan.getPhonenumber() );
+          ps.setString(5, loan.getEmail());
+          ps.setString(6, loan.getPassword());
+          ps.setDouble(7, loan.getLoanAmount());
+          ps.setInt(8,loan.getRepaymentPeriod());
+          ps.setInt(9,loan.getId());
           
           int i=ps.executeUpdate();
           
@@ -142,12 +150,12 @@ public class CustomerDAO {
        }
     return f;
     }
-        public boolean deleteCustomer(int id)
+        public boolean deleteLoan(int id)
                 
         {
         boolean f = false;
         try{
-         String sql ="delete from customer where cid=?";
+         String sql ="delete from loan where cid=?";
          PreparedStatement ps=conn.prepareStatement(sql);
          ps.setInt(1, id);
          

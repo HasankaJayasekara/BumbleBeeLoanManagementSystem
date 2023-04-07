@@ -29,6 +29,10 @@
                             <label  class="form-label">Full Name</label>
                             <input type="text" value="<%=u.getFullName()%>" name="fullName" class="form-control" >
                             </div>
+                            <div class="mb-3">
+                            <label  class="form-label">Date Of Birth</label>
+                            <input type="date" value="<%=u.getDateOfBirth()%>" name="dob" class="form-control" >
+                            </div>
                              <div class="mb-3">
                               <label  class="form-label">Email</label>
                               <input type="email" value="<%=u.getEmail()%>" name="email" class="form-control" >

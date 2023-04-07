@@ -8,7 +8,7 @@
 
 	<%
 	User auth = (User) request.getSession().getAttribute("auth");
-	if (auth != null) {
+	if (auth == null) {
 		response.sendRedirect("CustomerIndex.jsp");
 	}
         ProductDAO pd = new ProductDAO(DBConnect.getConn());
@@ -25,6 +25,30 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Bumble Bee</title>
         <%@include file="all_css.jsp" %>
+        <style>
+	.row.mt-5 {
+		background-color: #f7f7f7;
+		padding: 40px;
+	}
+	.row.mt-5 h4 {
+		font-weight: bold;
+		color: #333;
+		margin-bottom: 20px;
+	}
+	.row.mt-5 p {
+		color: #666;
+		font-size: 18px;
+		margin-bottom: 30px;
+	}
+	.row.mt-5 a.btn-secondary {
+		background-color: #ff5a5f;
+		border-color: #ff5a5f;
+	}
+	.row.mt-5 a.btn-secondary:hover {
+		background-color: #d9534f;
+		border-color: #d43f3a;
+	}
+</style>
         
     </head>
     <body class="bg-light">
@@ -59,6 +83,17 @@
 			out.println("There is no products");
 			}
 			%>
+                        
+                        </div>
+
+	<!-- New div for interest-free payments -->
+                    <div class="row mt-5">
+                            <div class="col-md-12 text-center">
+                                    <h4>Pay in 3 interest-free payments</h4>
+                                    
+                                    <a href="add_customer.jsp" class="btn btn-secondary">Apply Loan</a>
+                            </div>
+                    </div>
 
 		</div>
 	</div>

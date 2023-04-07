@@ -17,15 +17,15 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                     <div class="card-body">
-                        <p class="fs-3 text-center">Add Customer</p>
+                        <p class="fs-3 text-center">Apply Loan</p>
                         
                         <c:if test="${not empty succMsg}">
                             <p class="text-center text-success">${succMsg}</p>
                             <c:remove var="succMsg"/>
                         </c:if>
                          <c:if test="${not empty errorMsg}">
-                            <p class="text-center text-success">${errorMsg}</p>
-                            <c:remove var="succMsg"/>
+                            <p class="text-center text-danger error-message">${errorMsg}</p>
+                            <c:remove var="errorMsg"/>
                         </c:if>
                         <form action="register" method="post">
                             <div class="mb-3">
@@ -51,12 +51,22 @@
                             <div class="mb-3">
                               <label  class="form-label">Password</label>
                               <input type="password" name="password" class="form-control" >
+                            </div>.
+                             <div class="mb-3">
+                            <label for="loanAmount">Loan Amount</label>
+                            <input type="number" id="loanAmount" name="loanAmount" required min="0">
                             </div>
-                      
+                            <div class="mb-3">
+                            <label for="repaymentPeriod">Repayment Period</label>
+                            <select id="repaymentPeriod" name="repaymentPeriod" required>
+                                    <option value="3">3 months</option>
+                                    <option value="6">6 months</option>
+                                    <option value="9">9 months</option>
+                            </select>
+                            </div>
                           <button type="submit" class="btn btn-primary col-md-12">Submit</button>
                         </form>
                             <div class="text-center mt-3">
-                                <a href="login.jsp">Already registered? Login here</a>
                             </div>
                       </div>  
                         

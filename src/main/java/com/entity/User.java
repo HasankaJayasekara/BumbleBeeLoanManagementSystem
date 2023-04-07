@@ -4,9 +4,12 @@
  */
 package com.entity;
 
-public class User{    
+
+
+public class User {    
     private int id;
     private String fullName;
+    private String dateOfBirth;
     private String email;
     private String password;
 
@@ -14,15 +17,17 @@ public class User{
         super();
     }
 
-    public User(String fullName, String email, String password) {
+    public User(String fullName, String dateOfBirth, String email, String password) {
         this.fullName = fullName;
+        this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.password = password;
     }
 
-    public User(int id, String fullName, String email, String password) {
+    public User(int id, String fullName, String dateOfBirth, String email, String password) {
         this.id = id;
         this.fullName = fullName;
+        this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.password = password;
     }
@@ -43,6 +48,14 @@ public class User{
         this.fullName = fullName;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -61,6 +74,6 @@ public class User{
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", fullName=" + fullName + ", email=" + email + ", password=" + password + '}';
+        return "User{" + "id=" + id + ", fullName=" + fullName + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", password=" + password + '}';
     }
 }
