@@ -55,7 +55,7 @@
                   <td><%=p.getPrice()%></td>
                   <td><img src="<%=p.getImage()%>" alt="<%=p.getName()%>" width="50px" height="50px" /></td>
                   
-                  <td><a href="pupdate?id=<%=p.getId()%>" class="btn btn-sm btn-primary">Edit</a>
+                  <td><a href="edit_product.jsp?id=<%=p.getId()%>" class="btn btn-sm btn-primary">Edit</a>
                       <a href="pdelete?id=<%=p.getId()%>" class="btn btn-sm btn-danger ms-1">Delete</a></td>
                 </tr>
                    <%

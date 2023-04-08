@@ -21,13 +21,14 @@ public class ProductUpdateServlet extends HttpServlet {
         String category=req.getParameter("category");
         double price=Double.parseDouble(req.getParameter("price"));
         String image=req.getParameter("image");
+        int id= Integer.parseInt(req.getParameter("id"));
         
-        Product product = new Product( name,category,price, image);
+        Product product = new Product(id ,name,category,price, image);
         
         ProductDAO dao = new ProductDAO(DBConnect.getConn());
         HttpSession session=req.getSession();
         
-        boolean f = dao.addProduct(product);
+        boolean f = dao.updateProduct(product);
         
         if(f)
         {

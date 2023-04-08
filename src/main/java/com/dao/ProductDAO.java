@@ -50,7 +50,7 @@ public class ProductDAO {
                 }
             }
         }
-    
+      
 	
 	public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
@@ -103,6 +103,41 @@ public class ProductDAO {
 
 	        return row;
 	    }
+           public boolean updateProduct( Product product) {
+        try {
+            String sql = "UPDATE products SET name=?, category=?, price=?, image=? WHERE id=?";
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+            ps.setString(1, product.getName());
+            ps.setString(2, product.getCategory());
+            ps.setDouble(3, product.getPrice());
+            ps.setString(4, product.getImage());
+            ps.setInt(5, product.getId());
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
 	
 	public double getTotalCartPrice(ArrayList<Cart> cartList) {
         double sum = 0;

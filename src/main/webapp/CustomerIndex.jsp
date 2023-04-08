@@ -87,7 +87,7 @@
                             <div class="col-md-12 text-center">
                                     <h4>Pay in 3 interest-free payments</h4>
                                     
-                                    <a href="add_customer.jsp" class="btn btn-secondary">Apply Loan</a>
+                                    <a href="add_loan.jsp" class="btn btn-secondary">Apply Loan</a>
                             </div>
                     </div>
 

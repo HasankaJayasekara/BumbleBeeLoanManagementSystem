@@ -10,7 +10,7 @@
         <%@include file="all_css.jsp" %>
     </head>
     <body class="bg-light">
-        <%@include file="navbar.jsp" %>
+        <%@include file="cnavbar.jsp" %>
         
         <div class="container p-4">
             <div class="row">
